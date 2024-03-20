@@ -27,6 +27,7 @@ resource "aws_subnet" "my-pub1" {
 resource "aws_subnet" "my-pub2" {
   availability_zone = "us-east-1b"
   cidr_block = "192.168.2.0/24"
+   map_public_ip_on_launch = true
   vpc_id = aws_vpc.vpc1.id
   tags = {
     Name = "public-subnet2"
@@ -38,6 +39,7 @@ resource "aws_subnet" "my-pub2" {
 resource "aws_subnet" "my-priv1" {
   availability_zone = "us-east-1a"
   cidr_block = "192.168.3.0/24"
+  map_public_ip_on_launch = true
   vpc_id = aws_vpc.vpc1.id
   tags = {
     Name = "private-subnet1"
@@ -66,7 +68,7 @@ resource "aws_nat_gateway" "nat1" {
   subnet_id = aws_subnet.my-pub2.id
 }
 
-#Public route table
+#Public and private route table
 
 resource "aws_route_table" "rtpub" {
   vpc_id = aws_vpc.vpc1.id
