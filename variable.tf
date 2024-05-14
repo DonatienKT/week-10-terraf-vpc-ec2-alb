@@ -7,5 +7,5 @@ variable "INSTANCE_TYPE" {
 }
 
 variable "ENVIRONMENT" {
-  
+  default = "dev"
 }
